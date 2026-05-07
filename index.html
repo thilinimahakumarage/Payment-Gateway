@@ -1,0 +1,36 @@
+from flask import Flask, render_template, request
+from payment_gateway.factory import PaymentFactory
+from payment_gateway.singleton import PaymentGateway
+from payment_gateway.command import PaymentCommand
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment Gateway</title>
+</head>
+<body>
+
+<h2>💳 Payment Gateway System</h2>
+
+<form method="POST" action="/pay">
+    <label>Payment Method:</label>
+    <select name="method">
+        <option value="card">Credit Card</option>
+        <option value="paypal">PayPal</option>
+    </select>
+
+    <br><br>
+
+    <label>Amount:</label>
+    <input type="number" name="amount" required>
+
+    <br><br>
+
+    <button type="submit">Pay Now</button>
+</form>
+
+{% if result %}
+    <h3>{{ result }}</h3>
+{% endif %}
+
+</body>
+</html>
